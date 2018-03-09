@@ -93,7 +93,7 @@ Partial Class AcronymBuilderForm
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(532, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(523, 22)
         Me.StatusStrip1.TabIndex = 6
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -101,7 +101,7 @@ Partial Class AcronymBuilderForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(532, 450)
+        Me.ClientSize = New System.Drawing.Size(523, 450)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.txtAcronymDefinition)
         Me.Controls.Add(Me.chkGenerateList)
