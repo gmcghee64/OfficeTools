@@ -126,6 +126,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Word\AcronymBuilder\AcronymBuilderConfiguration.vb" />
     <Compile Include="Word\AcronymBuilder\AcronymBuilderForm.Designer.vb">
       <DependentUpon>AcronymBuilderForm.vb</DependentUpon>
     </Compile>
