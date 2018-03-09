@@ -22,8 +22,8 @@ Partial Class WorkbookCompare
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.cmdOriginalFile = New System.Windows.Forms.Button()
-        Me.cmdNewFile = New System.Windows.Forms.Button()
+        Me.ButtonOriginalFile = New System.Windows.Forms.Button()
+        Me.ButtonNewFile = New System.Windows.Forms.Button()
         Me.lstOriginalFileTabList = New System.Windows.Forms.ListBox()
         Me.lstNewFileTabList = New System.Windows.Forms.ListBox()
         Me.cmdCompare = New System.Windows.Forms.Button()
@@ -41,21 +41,21 @@ Partial Class WorkbookCompare
         '
         'cmdOriginalFile
         '
-        Me.cmdOriginalFile.Location = New System.Drawing.Point(68, 22)
-        Me.cmdOriginalFile.Name = "cmdOriginalFile"
-        Me.cmdOriginalFile.Size = New System.Drawing.Size(95, 45)
-        Me.cmdOriginalFile.TabIndex = 0
-        Me.cmdOriginalFile.Text = "Select Original File"
-        Me.cmdOriginalFile.UseVisualStyleBackColor = True
+        Me.ButtonOriginalFile.Location = New System.Drawing.Point(68, 22)
+        Me.ButtonOriginalFile.Name = "cmdOriginalFile"
+        Me.ButtonOriginalFile.Size = New System.Drawing.Size(95, 45)
+        Me.ButtonOriginalFile.TabIndex = 0
+        Me.ButtonOriginalFile.Text = "Select Original File"
+        Me.ButtonOriginalFile.UseVisualStyleBackColor = True
         '
         'cmdNewFile
         '
-        Me.cmdNewFile.Location = New System.Drawing.Point(272, 22)
-        Me.cmdNewFile.Name = "cmdNewFile"
-        Me.cmdNewFile.Size = New System.Drawing.Size(95, 45)
-        Me.cmdNewFile.TabIndex = 1
-        Me.cmdNewFile.Text = "Select New File"
-        Me.cmdNewFile.UseVisualStyleBackColor = True
+        Me.ButtonNewFile.Location = New System.Drawing.Point(272, 22)
+        Me.ButtonNewFile.Name = "cmdNewFile"
+        Me.ButtonNewFile.Size = New System.Drawing.Size(95, 45)
+        Me.ButtonNewFile.TabIndex = 1
+        Me.ButtonNewFile.Text = "Select New File"
+        Me.ButtonNewFile.UseVisualStyleBackColor = True
         '
         'lstOriginalFileTabList
         '
@@ -177,8 +177,8 @@ Partial Class WorkbookCompare
         Me.Controls.Add(Me.cmdCompare)
         Me.Controls.Add(Me.lstNewFileTabList)
         Me.Controls.Add(Me.lstOriginalFileTabList)
-        Me.Controls.Add(Me.cmdNewFile)
-        Me.Controls.Add(Me.cmdOriginalFile)
+        Me.Controls.Add(Me.ButtonNewFile)
+        Me.Controls.Add(Me.ButtonOriginalFile)
         Me.Name = "WorkbookCompare"
         Me.Text = "Workbook Compare"
         Me.grpKeyValue.ResumeLayout(False)
@@ -189,8 +189,8 @@ Partial Class WorkbookCompare
 
     End Sub
 
-    Friend WithEvents cmdOriginalFile As Button
-    Friend WithEvents cmdNewFile As Button
+    Friend WithEvents ButtonOriginalFile As Button
+    Friend WithEvents ButtonNewFile As Button
     Friend WithEvents lstOriginalFileTabList As ListBox
     Friend WithEvents lstNewFileTabList As ListBox
     Friend WithEvents cmdCompare As Button

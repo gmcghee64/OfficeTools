@@ -5,6 +5,7 @@ Public Class WordHandler
     '''This class creates an instance of a word application and provides common functions for processing word files. 
     ''' </summary>
     Private _myWordApp As New Application
+    Private _ActiveDocument As Document
 
     Public Sub New()
     End Sub
@@ -25,24 +26,17 @@ Public Class WordHandler
 
 
     Protected Overrides Sub Finalize()
-        WordApp.Quit()
+        Try
+            WordApp.Quit()
+        Catch ex As Exception
+            Debug.Print("Exception in WordHandler.Finalize.  " & ex.ToString)
+        End Try
         MyBase.Finalize()
     End Sub
 
-    Public Overrides Function ToString() As String
-        Return MyBase.ToString()
-    End Function
-
-    Public Overrides Function Equals(obj As Object) As Boolean
-        Return MyBase.Equals(obj)
-    End Function
-
-    Public Overrides Function GetHashCode() As Integer
-        Return MyBase.GetHashCode()
-    End Function
-
     ''' <summary>
-    ''' This function is used to open a word document for processing.
+    ''' This function is used to open a word document for processing.  The opened document is stored in the ActiveDocument
+    ''' property.
     ''' </summary>
     ''' <returns>
     ''' If the document is successfully opened, the function returns a value of true.  Otherwise, a value
@@ -54,6 +48,7 @@ Public Class WordHandler
                 .Visible = True
                 .Documents.Open(.GetOpenFilename(FileFilter:="Word Files (*.doc; *.docx), _
                                                                 *.doc;*.docx"))
+                'TODO:  Save active document in ActiveDocument property.
                 .Visible = False
                 OpenDocument = True
             End With

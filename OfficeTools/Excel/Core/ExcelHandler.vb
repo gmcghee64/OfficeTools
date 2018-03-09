@@ -48,7 +48,11 @@ Public Class ExcelHandler
     End Property
 
     Protected Overrides Sub Finalize()
-        ExcelApp.Quit()
+        Try
+            ExcelApp.Quit()
+        Catch ex As Exception
+            Debug.Print("Exception in ExcelHandler.Finalize.  " & ex.ToString)
+        End Try
         MyBase.Finalize()
     End Sub
 

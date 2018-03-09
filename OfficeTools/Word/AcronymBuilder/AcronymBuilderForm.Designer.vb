@@ -22,24 +22,24 @@ Partial Class AcronymBuilderForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lstAcronyms = New System.Windows.Forms.ListBox()
+        Me.ListBoxAcronyms = New System.Windows.Forms.ListBox()
         Me.ButtonExit = New System.Windows.Forms.Button()
         Me.ButtonOpenDocument = New System.Windows.Forms.Button()
         Me.ButtonUpdateDocument = New System.Windows.Forms.Button()
-        Me.chkGenerateList = New System.Windows.Forms.CheckBox()
-        Me.txtAcronymDefinition = New System.Windows.Forms.TextBox()
+        Me.CheckBoxGenerateList = New System.Windows.Forms.CheckBox()
+        Me.TextBoxAcronymDefinition = New System.Windows.Forms.TextBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.SuspendLayout()
         '
-        'lstAcronyms
+        'ListBoxAcronyms
         '
-        Me.lstAcronyms.Enabled = False
-        Me.lstAcronyms.FormattingEnabled = True
-        Me.lstAcronyms.ItemHeight = 16
-        Me.lstAcronyms.Location = New System.Drawing.Point(27, 53)
-        Me.lstAcronyms.Name = "lstAcronyms"
-        Me.lstAcronyms.Size = New System.Drawing.Size(194, 244)
-        Me.lstAcronyms.TabIndex = 0
+        Me.ListBoxAcronyms.Enabled = False
+        Me.ListBoxAcronyms.FormattingEnabled = True
+        Me.ListBoxAcronyms.ItemHeight = 16
+        Me.ListBoxAcronyms.Location = New System.Drawing.Point(27, 53)
+        Me.ListBoxAcronyms.Name = "ListBoxAcronyms"
+        Me.ListBoxAcronyms.Size = New System.Drawing.Size(194, 244)
+        Me.ListBoxAcronyms.TabIndex = 0
         '
         'ButtonExit
         '
@@ -69,24 +69,24 @@ Partial Class AcronymBuilderForm
         Me.ButtonUpdateDocument.Text = "Update Document"
         Me.ButtonUpdateDocument.UseVisualStyleBackColor = True
         '
-        'chkGenerateList
+        'CheckBoxGenerateList
         '
-        Me.chkGenerateList.AutoSize = True
-        Me.chkGenerateList.Enabled = False
-        Me.chkGenerateList.Location = New System.Drawing.Point(266, 205)
-        Me.chkGenerateList.Name = "chkGenerateList"
-        Me.chkGenerateList.Size = New System.Drawing.Size(212, 21)
-        Me.chkGenerateList.TabIndex = 4
-        Me.chkGenerateList.Text = "Generate Table of Acronyms"
-        Me.chkGenerateList.UseVisualStyleBackColor = True
+        Me.CheckBoxGenerateList.AutoSize = True
+        Me.CheckBoxGenerateList.Enabled = False
+        Me.CheckBoxGenerateList.Location = New System.Drawing.Point(266, 205)
+        Me.CheckBoxGenerateList.Name = "CheckBoxGenerateList"
+        Me.CheckBoxGenerateList.Size = New System.Drawing.Size(212, 21)
+        Me.CheckBoxGenerateList.TabIndex = 4
+        Me.CheckBoxGenerateList.Text = "Generate Table of Acronyms"
+        Me.CheckBoxGenerateList.UseVisualStyleBackColor = True
         '
-        'txtAcronymDefinition
+        'TextBoxAcronymDefinition
         '
-        Me.txtAcronymDefinition.Enabled = False
-        Me.txtAcronymDefinition.Location = New System.Drawing.Point(266, 53)
-        Me.txtAcronymDefinition.Name = "txtAcronymDefinition"
-        Me.txtAcronymDefinition.Size = New System.Drawing.Size(212, 22)
-        Me.txtAcronymDefinition.TabIndex = 5
+        Me.TextBoxAcronymDefinition.Enabled = False
+        Me.TextBoxAcronymDefinition.Location = New System.Drawing.Point(266, 53)
+        Me.TextBoxAcronymDefinition.Name = "TextBoxAcronymDefinition"
+        Me.TextBoxAcronymDefinition.Size = New System.Drawing.Size(212, 22)
+        Me.TextBoxAcronymDefinition.TabIndex = 5
         '
         'StatusStrip1
         '
@@ -103,12 +103,12 @@ Partial Class AcronymBuilderForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(523, 450)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.txtAcronymDefinition)
-        Me.Controls.Add(Me.chkGenerateList)
+        Me.Controls.Add(Me.TextBoxAcronymDefinition)
+        Me.Controls.Add(Me.CheckBoxGenerateList)
         Me.Controls.Add(Me.ButtonUpdateDocument)
         Me.Controls.Add(Me.ButtonOpenDocument)
         Me.Controls.Add(Me.ButtonExit)
-        Me.Controls.Add(Me.lstAcronyms)
+        Me.Controls.Add(Me.ListBoxAcronyms)
         Me.Name = "AcronymBuilderForm"
         Me.Text = "Acronym Builder"
         Me.ResumeLayout(False)
@@ -116,11 +116,11 @@ Partial Class AcronymBuilderForm
 
     End Sub
 
-    Friend WithEvents lstAcronyms As ListBox
+    Friend WithEvents ListBoxAcronyms As ListBox
     Friend WithEvents ButtonExit As Button
     Friend WithEvents ButtonOpenDocument As Button
     Friend WithEvents ButtonUpdateDocument As Button
-    Friend WithEvents chkGenerateList As CheckBox
-    Friend WithEvents txtAcronymDefinition As TextBox
+    Friend WithEvents CheckBoxGenerateList As CheckBox
+    Friend WithEvents TextBoxAcronymDefinition As TextBox
     Friend WithEvents StatusStrip1 As StatusStrip
 End Class

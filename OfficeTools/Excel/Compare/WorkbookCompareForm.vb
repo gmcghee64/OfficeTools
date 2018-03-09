@@ -15,7 +15,7 @@
         End With
     End Sub
 
-    Private Sub cmdOriginalFile_Click(sender As Object, e As EventArgs) Handles cmdOriginalFile.Click
+    Private Sub ButtonOriginalFile_Click(sender As Object, e As EventArgs) Handles ButtonOriginalFile.Click
         Try
             With myConfiguration
                 .ExcelHandler.OpenWorkbook()
@@ -35,7 +35,7 @@
         End Try
     End Sub
 
-    Private Sub cmdNewFile_Click(sender As Object, e As EventArgs) Handles cmdNewFile.Click
+    Private Sub ButtonNewFile_Click(sender As Object, e As EventArgs) Handles ButtonNewFile.Click
         Try
             With myConfiguration
                 .ExcelHandler.OpenWorkbook()
