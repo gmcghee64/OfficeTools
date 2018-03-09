@@ -92,10 +92,10 @@
     <Compile Include="Excel\Core\GUID_Container.vb" />
     <Compile Include="Excel\Core\LogicalTopic.vb" />
     <Compile Include="Excel\Core\LogicalTopicCollection.vb" />
-    <Compile Include="Excel\Core\MainForm.Designer.vb">
+    <Compile Include="MainForm.Designer.vb">
       <DependentUpon>MainForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Excel\Core\MainForm.vb">
+    <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Excel\IDD\Consolidate\ConsolidatePreparationWorkbook.vb" />
@@ -126,6 +126,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Word\AcronymBuilder\AcronymBuilderForm.Designer.vb">
+      <DependentUpon>AcronymBuilderForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Word\AcronymBuilder\AcronymBuilderForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Word\AcronymBuilder\AcronymDetails.vb" />
     <Compile Include="Word\Core\WordHandler.vb" />
   </ItemGroup>
@@ -133,7 +139,7 @@
     <EmbeddedResource Include="Excel\Compare\WorkbookCompareForm.resx">
       <DependentUpon>WorkbookCompareForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Excel\Core\MainForm.resx">
+    <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Excel\IDD\Consolidate\IDD_ConsolidationForm.resx" />
@@ -143,6 +149,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Word\AcronymBuilder\AcronymBuilderForm.resx">
+      <DependentUpon>AcronymBuilderForm.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

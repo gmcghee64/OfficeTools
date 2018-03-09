@@ -27,4 +27,20 @@
         myComparer.MdiParent = Me
         myComparer.Show()
     End Sub
+
+    Private Sub AcronymBuilderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AcronymBuilderToolStripMenuItem.Click
+        Dim myAcronymBuilder = New AcronymBuilderForm
+        myAcronymBuilder.MdiParent = Me
+        myAcronymBuilder.Show()
+    End Sub
+
+    Private Sub AnnotateIDDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AnnotateIDDToolStripMenuItem.Click
+        'TODO:  Implement this function
+        MsgBox("Not implemented")
+    End Sub
+
+    Private Sub GenerateAnnotationPagesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GenerateAnnotationPagesToolStripMenuItem.Click
+        'TODO:  Implement this function
+        MsgBox("Not implemented")
+    End Sub
 End Class
