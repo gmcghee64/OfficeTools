@@ -2,7 +2,7 @@
 
 Public Class WordHandler
     ''' <summary>
-    '''This class creates an instance of an excel application and provides common functions for processing excel files. 
+    '''This class creates an instance of a word application and provides common functions for processing word files. 
     ''' </summary>
     Private _myWordApp As New Application
 
@@ -10,9 +10,9 @@ Public Class WordHandler
     End Sub
 
     ''' <summary>
-    ''' This is a handle to the excel application instance.  When using the ExcelHandler class, users should retrieve
-    ''' this application instance to execute excel functions to manipulate the workbook.  Prior to manipulating the 
-    ''' workbook, users will need to execute the OpenWorkbook method to open a workbook.
+    ''' This is a handle to the word application instance.  When using the WordHandler class, users should retrieve
+    ''' this application instance to execute word functions to manipulate the document.  Prior to manipulating the 
+    ''' document, users will need to execute the OpenDocument method to open a document.
     ''' </summary>
     ''' <returns>
     ''' The function returns an instance of the active application.
@@ -53,7 +53,7 @@ Public Class WordHandler
             With WordApp
                 .Visible = True
                 .Documents.Open(.GetOpenFilename(FileFilter:="Word Files (*.doc; *.docx), _
-                                                                *.doc;*.docx")))
+                                                                *.doc;*.docx"))
                 .Visible = False
                 OpenDocument = True
             End With
