@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.Office.Interop.Excel
 Imports OfficeTools
+Imports OfficeTools.ComparisonTypes
 
 ''' <summary>
 ''' This class either performs a complete workbook comparison or comparison of selected sheets in two workbooks.
@@ -119,7 +120,7 @@ Public Class CompareWorkbooks
     ''' workbook having the same name as the NewWorkbook appended with a date/time stamp.
     ''' </summary>
     ''' <param name="statusPanel"></param>
-    ''' <returns></returns>
+    ''' <returns>If the comparison is successful, true is returned.  Otherwise, false is returned.</returns>
     Public Function PerformComparison(statusPanel As StatusBar) As Boolean
         If CheckConfiguration() = True Then
             Dim myResultsCollection As New Collection
@@ -170,7 +171,7 @@ Public Class CompareWorkbooks
     ''' The CheckConfiguration operation verifies that all of the necessary properties have been defined
     ''' prior to executing the comparison.
     ''' </summary>
-    ''' <returns></returns>
+    ''' <returns>If all properties have been properly configured, true is returned.  Othwerwise, false is returned.</returns>
     Private Function CheckConfiguration() As Boolean
         If Not IsNothing(ExcelHandler) And Not IsNothing(OriginalWorkbook) And
                 Not IsNothing(NewWorkbook) Then
@@ -188,8 +189,32 @@ Public Class CompareWorkbooks
         End If
     End Function
 
+    ''' <summary>
+    ''' This operation compares two worksheets.
+    ''' </summary>
+    ''' <param name="originalSheet"></param>
+    ''' <param name="newSheet"></param>
+    ''' <param name="result"></param>
+    ''' <returns>This operation returns true if the comparison is successful.  Otherwise, false is returned.  When true
+    ''' is returned, the detailed results will be in the result parameter.</returns>
     Private Function CompareSheet(originalSheet As Worksheet, newSheet As Worksheet, result As SheetComparisonResults) As Boolean
         'TODO:  Compare workwheet
-        Return True
+        Try
+            If originalSheet Is newSheet Then
+                result.Result = ResultType.SHEET_IDENTICAL
+                Return True
+            Else
+                'Perform a cell by cell comparison
+                For Each cell In newSheet.UsedRange
+                    'TODO:  Make comparison based on setting of KeyValueColumnA property
+                Next
+                Return True
+            End If
+        Catch ex As Exception
+            'The new sheet isn't in the original workbook.
+            result.Result = ResultType.SHEET_NEW
+            Debug.Print("Exception in CompareWorkbooks.CompareSheet.  " & ex.ToString)
+            Return True
+        End Try
     End Function
 End Class
