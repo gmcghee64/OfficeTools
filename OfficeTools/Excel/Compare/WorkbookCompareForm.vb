@@ -9,8 +9,8 @@
     Public Sub New()
         InitializeComponent()
         With myConfiguration
-            optColumnA.Checked = .KeyValueColumnA
-            optCompareSingleSheet.Checked = .CompareSingleSheet
+            OptionColumnA.Checked = .KeyValueColumnA
+            OptionCompareSingleSheet.Checked = .CompareSingleSheet
             .ExcelHandler = New ExcelHandler
         End With
     End Sub
@@ -20,9 +20,9 @@
             With myConfiguration
                 .ExcelHandler.OpenWorkbook()
                 .OriginalWorkbook = .ExcelHandler.ActiveWorkbook
-                lstOriginalFileTabList.Items.Clear()
+                ListBoxOriginalFileTabList.Items.Clear()
                 For Each sheet In .OriginalWorkbook.Sheets
-                    lstOriginalFileTabList.Items.Add(sheet.name)
+                    ListBoxOriginalFileTabList.Items.Add(sheet.name)
                 Next
             End With
             ConfigureFormSelections()
@@ -30,7 +30,7 @@
             'Workbook not opened, clear configuration
             Debug.Print(ex.ToString)
             myConfiguration.OriginalWorkbook = Nothing
-            Me.lstOriginalFileTabList.Items.Clear()
+            Me.ListBoxOriginalFileTabList.Items.Clear()
             ConfigureFormSelections()
         End Try
     End Sub
@@ -40,9 +40,9 @@
             With myConfiguration
                 .ExcelHandler.OpenWorkbook()
                 .NewWorkbook = .ExcelHandler.ActiveWorkbook
-                lstNewFileTabList.Items.Clear()
+                ListBoxNewFileTabList.Items.Clear()
                 For Each sheet In .NewWorkbook.Sheets
-                    lstNewFileTabList.Items.Add(sheet.name)
+                    ListBoxNewFileTabList.Items.Add(sheet.name)
                 Next
             End With
             ConfigureFormSelections()
@@ -50,38 +50,38 @@
             'Workbook not opened, clear configuration
             Debug.Print(ex.ToString)
             myConfiguration.NewWorkbook = Nothing
-            Me.lstNewFileTabList.Items.Clear()
+            Me.ListBoxNewFileTabList.Items.Clear()
             ConfigureFormSelections()
         End Try
     End Sub
 
-    Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+    Private Sub ButtonExit_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
         Me.Hide()
     End Sub
 
-    Private Sub cmdCompare_Click(sender As Object, e As EventArgs) Handles cmdCompare.Click
+    Private Sub ButtonCompare_Click(sender As Object, e As EventArgs) Handles ButtonCompare.Click
         'TODO:  Implement comparison
     End Sub
 
-    Private Sub optColumnA_CheckedChanged(sender As Object, e As EventArgs) Handles optColumnA.CheckedChanged
-        myConfiguration.KeyValueColumnA = optColumnA.Checked
+    Private Sub OptionColumnA_CheckedChanged(sender As Object, e As EventArgs) Handles OptionColumnA.CheckedChanged
+        myConfiguration.KeyValueColumnA = OptionColumnA.Checked
     End Sub
 
-    Private Sub optRowByRow_CheckedChanged(sender As Object, e As EventArgs) Handles optRowByRow.CheckedChanged
-        myConfiguration.KeyValueColumnA = Not (optRowByRow.Checked)
+    Private Sub OptionRowByRow_CheckedChanged(sender As Object, e As EventArgs) Handles OptionRowByRow.CheckedChanged
+        myConfiguration.KeyValueColumnA = Not (OptionRowByRow.Checked)
     End Sub
 
-    Private Sub optCompareSingleSheet_CheckedChanged(sender As Object, e As EventArgs) Handles optCompareSingleSheet.CheckedChanged
-        myConfiguration.CompareSingleSheet = optCompareSingleSheet.Checked
+    Private Sub OptionCompareSingleSheet_CheckedChanged(sender As Object, e As EventArgs) Handles OptionCompareSingleSheet.CheckedChanged
+        myConfiguration.CompareSingleSheet = OptionCompareSingleSheet.Checked
         ConfigureFormSelections()
     End Sub
 
-    Private Sub optCompareAll_CheckedChanged(sender As Object, e As EventArgs) Handles optCompareAll.CheckedChanged
-        myConfiguration.CompareSingleSheet = Not (optCompareAll.Checked)
+    Private Sub OptionCompareAll_CheckedChanged(sender As Object, e As EventArgs) Handles OptionCompareAll.CheckedChanged
+        myConfiguration.CompareSingleSheet = Not (OptionCompareAll.Checked)
         ConfigureFormSelections()
     End Sub
 
-    Private Sub cmdReset_Click(sender As Object, e As EventArgs) Handles cmdReset.Click
+    Private Sub ButtonReset_Click(sender As Object, e As EventArgs) Handles ButtonReset.Click
         With myConfiguration
             Try
                 .ExcelHandler.ExcelApp.Workbooks.Close()
@@ -91,11 +91,11 @@
             .NewWorkbook = Nothing
             .OriginalWorkbook = Nothing
         End With
-        lstNewFileTabList.Items.Clear()
-        lstOriginalFileTabList.Items.Clear()
+        ListBoxNewFileTabList.Items.Clear()
+        ListBoxOriginalFileTabList.Items.Clear()
     End Sub
 
-    Private Sub lstOriginalFileTabList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstOriginalFileTabList.SelectedIndexChanged
+    Private Sub ListBoxOriginalFileTabList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxOriginalFileTabList.SelectedIndexChanged
         Try
             'TODO:  Add selected sheet to myConfiguration
         Catch ex As Exception
@@ -103,7 +103,7 @@
         End Try
     End Sub
 
-    Private Sub lstNewFileTabList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstNewFileTabList.SelectedIndexChanged
+    Private Sub ListBoxNewFileTabList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxNewFileTabList.SelectedIndexChanged
         Try
             'TODO:  Add selected sheet to myConfiguration
         Catch ex As Exception
@@ -115,16 +115,16 @@
         With myConfiguration
             If Not IsNothing(.NewWorkbook) And Not IsNothing(.OriginalWorkbook) Then
                 If .CompareSingleSheet = True Then
-                    lstNewFileTabList.Enabled = True
-                    lstOriginalFileTabList.Enabled = True
+                    ListBoxNewFileTabList.Enabled = True
+                    ListBoxOriginalFileTabList.Enabled = True
                 Else
-                    lstNewFileTabList.Enabled = False
-                    lstOriginalFileTabList.Enabled = False
+                    ListBoxNewFileTabList.Enabled = False
+                    ListBoxOriginalFileTabList.Enabled = False
                 End If
             Else
-                lstNewFileTabList.Enabled = False
-                lstOriginalFileTabList.Enabled = False
-                cmdCompare.Enabled = False
+                ListBoxNewFileTabList.Enabled = False
+                ListBoxOriginalFileTabList.Enabled = False
+                ButtonCompare.Enabled = False
             End If
         End With
     End Sub
