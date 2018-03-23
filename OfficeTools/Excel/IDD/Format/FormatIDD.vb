@@ -11,11 +11,15 @@ Public Class FormatIDD
                         Dim myWorksheet As Worksheet = item
                         MainForm.statusLabel.Text = "Format IDD:  Formatting sheet " & myWorksheet.Index & " of " & .Worksheets.Count
                         If myWorksheet.Range("B3").Text = "MESSAGE NAME" Then
-                            myWorksheet.Range("A7").Value = "Applicability"
+                            'Find row in which ATTRIBUTE appears
+                            Dim myHeaderRow As Integer
+                            myHeaderRow = myWorksheet.Range("B:B").Find("ATTRIBUTE").Row
+                            myWorksheet.Range("A" & myHeaderRow).Value = "Applicability"
                             Dim myWorksheetLastRow As Integer = myExcelHandler.ExcelApp.WorksheetFunction.CountA(myWorksheet.Range("B:B")) + 2
-                            Dim myTableRange As Range = myWorksheet.Range("A7:I" & myWorksheetLastRow)
+                            Dim myTableRange As Range = myWorksheet.Range("A" & myHeaderRow & ":I" & myWorksheetLastRow)
                             Dim myTable As ListObject = myWorksheet.ListObjects.AddEx(XlListObjectSourceType.xlSrcRange, myTableRange,, XlYesNoGuess.xlYes)
-                            myTable.Name = myWorksheet.Name
+                            myTable.Name = myWorksheet.Range("C3").Text
+                            'myTable.Name = myWorksheet.Name
                         End If
                     Next
                     .SaveAs(Left(.Name, Len(.Name) - 5) & "_" & Now().ToString("yyyyMMdd_hh_mm") & ".xlsx")
