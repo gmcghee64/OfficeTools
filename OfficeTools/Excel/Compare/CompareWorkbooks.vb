@@ -199,16 +199,37 @@ Public Class CompareWorkbooks
     ''' is returned, the detailed results will be in the result parameter.</returns>
     Private Function CompareSheet(originalSheet As Worksheet, newSheet As Worksheet, result As SheetComparisonResults) As Boolean
         'TODO:  Compare workwheet
+        'Assume sheets are identical
+        result.Result = ResultType.SHEET_IDENTICAL
         Try
             If originalSheet Is newSheet Then
                 result.Result = ResultType.SHEET_IDENTICAL
                 Return True
             Else
                 'Perform a cell by cell comparison
-                For Each cell In newSheet.UsedRange
-                    'TODO:  Make comparison based on setting of KeyValueColumnA property
-                Next
-                Return True
+                Select Case KeyValueColumnA
+                    Case True
+                        'Use column A as key value
+                        For myKeyValueCounter = 1 To originalSheet.UsedRange.Rows.Count
+                            Dim myKeyValue As String = originalSheet.Range("A" & myKeyValueCounter).Text
+                            'Locate key value row in newSheet
+                            Try
+                                Dim myKeyValueRow As Double = ExcelHandler.ExcelApp.WorksheetFunction.Match(myKeyValue, newSheet.Range("A1:A" & newSheet.UsedRange.Rows.Count), 0)
+                            Catch ex As Exception
+                                'Row was deleted in newSheet.  Save row in collection as deleted.
+                                result.Result = ResultType.SHEET_DIFFERENT
+                                'TODO:  Note that when retrieving this from the collection, the fact that it is an entire row from the original sheet means that the row was deleted
+                                result.CellList.Add(originalSheet.Range(originalSheet.Cells(myKeyValueCounter, 1), originalSheet.Cells(myKeyValueCounter, originalSheet.UsedRange.Columns.Count)), myKeyValue)
+                            End Try
+                            For myColumnCounter = 1 To originalSheet.UsedRange.Columns.Count
+
+                            Next
+                        Next
+                        Return True
+                    Case Else
+                        'Perform row-by-row comparison
+                        Return True
+                End Select
             End If
         Catch ex As Exception
             'The new sheet isn't in the original workbook.
