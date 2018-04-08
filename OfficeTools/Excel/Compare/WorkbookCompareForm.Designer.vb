@@ -35,52 +35,60 @@ Partial Class WorkbookCompare
         Me.OptionCompareSingleSheet = New System.Windows.Forms.RadioButton()
         Me.ButtonReset = New System.Windows.Forms.Button()
         Me.ButtonExit = New System.Windows.Forms.Button()
+        Me.Status = New System.Windows.Forms.StatusStrip()
         Me.grpKeyValue.SuspendLayout()
         Me.grpCompareConfiguration.SuspendLayout()
         Me.SuspendLayout()
         '
-        'cmdOriginalFile
+        'ButtonOriginalFile
         '
-        Me.ButtonOriginalFile.Location = New System.Drawing.Point(68, 22)
-        Me.ButtonOriginalFile.Name = "cmdOriginalFile"
-        Me.ButtonOriginalFile.Size = New System.Drawing.Size(95, 45)
+        Me.ButtonOriginalFile.Location = New System.Drawing.Point(91, 27)
+        Me.ButtonOriginalFile.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonOriginalFile.Name = "ButtonOriginalFile"
+        Me.ButtonOriginalFile.Size = New System.Drawing.Size(127, 55)
         Me.ButtonOriginalFile.TabIndex = 0
         Me.ButtonOriginalFile.Text = "Select Original File"
         Me.ButtonOriginalFile.UseVisualStyleBackColor = True
         '
-        'cmdNewFile
+        'ButtonNewFile
         '
-        Me.ButtonNewFile.Location = New System.Drawing.Point(272, 22)
-        Me.ButtonNewFile.Name = "cmdNewFile"
-        Me.ButtonNewFile.Size = New System.Drawing.Size(95, 45)
+        Me.ButtonNewFile.Location = New System.Drawing.Point(363, 27)
+        Me.ButtonNewFile.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonNewFile.Name = "ButtonNewFile"
+        Me.ButtonNewFile.Size = New System.Drawing.Size(127, 55)
         Me.ButtonNewFile.TabIndex = 1
         Me.ButtonNewFile.Text = "Select New File"
         Me.ButtonNewFile.UseVisualStyleBackColor = True
         '
-        'lstOriginalFileTabList
+        'ListBoxOriginalFileTabList
         '
         Me.ListBoxOriginalFileTabList.Enabled = False
         Me.ListBoxOriginalFileTabList.FormattingEnabled = True
-        Me.ListBoxOriginalFileTabList.Location = New System.Drawing.Point(26, 85)
-        Me.ListBoxOriginalFileTabList.Name = "lstOriginalFileTabList"
-        Me.ListBoxOriginalFileTabList.Size = New System.Drawing.Size(167, 147)
+        Me.ListBoxOriginalFileTabList.ItemHeight = 16
+        Me.ListBoxOriginalFileTabList.Location = New System.Drawing.Point(35, 105)
+        Me.ListBoxOriginalFileTabList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ListBoxOriginalFileTabList.Name = "ListBoxOriginalFileTabList"
+        Me.ListBoxOriginalFileTabList.Size = New System.Drawing.Size(221, 180)
         Me.ListBoxOriginalFileTabList.TabIndex = 2
         '
-        'lstNewFileTabList
+        'ListBoxNewFileTabList
         '
         Me.ListBoxNewFileTabList.Enabled = False
         Me.ListBoxNewFileTabList.FormattingEnabled = True
-        Me.ListBoxNewFileTabList.Location = New System.Drawing.Point(236, 85)
-        Me.ListBoxNewFileTabList.Name = "lstNewFileTabList"
-        Me.ListBoxNewFileTabList.Size = New System.Drawing.Size(167, 147)
+        Me.ListBoxNewFileTabList.ItemHeight = 16
+        Me.ListBoxNewFileTabList.Location = New System.Drawing.Point(315, 105)
+        Me.ListBoxNewFileTabList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ListBoxNewFileTabList.Name = "ListBoxNewFileTabList"
+        Me.ListBoxNewFileTabList.Size = New System.Drawing.Size(221, 180)
         Me.ListBoxNewFileTabList.TabIndex = 3
         '
-        'cmdCompare
+        'ButtonCompare
         '
         Me.ButtonCompare.Enabled = False
-        Me.ButtonCompare.Location = New System.Drawing.Point(168, 244)
-        Me.ButtonCompare.Name = "cmdCompare"
-        Me.ButtonCompare.Size = New System.Drawing.Size(95, 45)
+        Me.ButtonCompare.Location = New System.Drawing.Point(224, 300)
+        Me.ButtonCompare.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonCompare.Name = "ButtonCompare"
+        Me.ButtonCompare.Size = New System.Drawing.Size(127, 55)
         Me.ButtonCompare.TabIndex = 4
         Me.ButtonCompare.Text = "Compare Files"
         Me.ButtonCompare.UseVisualStyleBackColor = True
@@ -89,29 +97,33 @@ Partial Class WorkbookCompare
         '
         Me.grpKeyValue.Controls.Add(Me.OptionRowByRow)
         Me.grpKeyValue.Controls.Add(Me.OptionColumnA)
-        Me.grpKeyValue.Location = New System.Drawing.Point(9, 298)
+        Me.grpKeyValue.Location = New System.Drawing.Point(12, 367)
+        Me.grpKeyValue.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.grpKeyValue.Name = "grpKeyValue"
-        Me.grpKeyValue.Size = New System.Drawing.Size(196, 72)
+        Me.grpKeyValue.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpKeyValue.Size = New System.Drawing.Size(261, 89)
         Me.grpKeyValue.TabIndex = 6
         Me.grpKeyValue.TabStop = False
         Me.grpKeyValue.Text = "Key Value Configuration"
         '
-        'optRowByRow
+        'OptionRowByRow
         '
         Me.OptionRowByRow.AutoSize = True
-        Me.OptionRowByRow.Location = New System.Drawing.Point(9, 44)
-        Me.OptionRowByRow.Name = "optRowByRow"
-        Me.OptionRowByRow.Size = New System.Drawing.Size(183, 17)
+        Me.OptionRowByRow.Location = New System.Drawing.Point(12, 54)
+        Me.OptionRowByRow.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.OptionRowByRow.Name = "OptionRowByRow"
+        Me.OptionRowByRow.Size = New System.Drawing.Size(239, 21)
         Me.OptionRowByRow.TabIndex = 1
         Me.OptionRowByRow.Text = "Perform Row by Row Comparison"
         Me.OptionRowByRow.UseVisualStyleBackColor = True
         '
-        'optColumnA
+        'OptionColumnA
         '
         Me.OptionColumnA.AutoSize = True
-        Me.OptionColumnA.Location = New System.Drawing.Point(9, 21)
-        Me.OptionColumnA.Name = "optColumnA"
-        Me.OptionColumnA.Size = New System.Drawing.Size(157, 17)
+        Me.OptionColumnA.Location = New System.Drawing.Point(12, 26)
+        Me.OptionColumnA.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.OptionColumnA.Name = "OptionColumnA"
+        Me.OptionColumnA.Size = New System.Drawing.Size(205, 21)
         Me.OptionColumnA.TabIndex = 0
         Me.OptionColumnA.Text = "Use Column A as Key Value"
         Me.OptionColumnA.UseVisualStyleBackColor = True
@@ -120,56 +132,72 @@ Partial Class WorkbookCompare
         '
         Me.grpCompareConfiguration.Controls.Add(Me.OptionCompareAll)
         Me.grpCompareConfiguration.Controls.Add(Me.OptionCompareSingleSheet)
-        Me.grpCompareConfiguration.Location = New System.Drawing.Point(233, 298)
+        Me.grpCompareConfiguration.Location = New System.Drawing.Point(311, 367)
+        Me.grpCompareConfiguration.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.grpCompareConfiguration.Name = "grpCompareConfiguration"
-        Me.grpCompareConfiguration.Size = New System.Drawing.Size(196, 72)
+        Me.grpCompareConfiguration.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.grpCompareConfiguration.Size = New System.Drawing.Size(261, 89)
         Me.grpCompareConfiguration.TabIndex = 7
         Me.grpCompareConfiguration.TabStop = False
         Me.grpCompareConfiguration.Text = "Comparison Configuration"
         '
-        'optCompareAll
+        'OptionCompareAll
         '
         Me.OptionCompareAll.AutoSize = True
-        Me.OptionCompareAll.Location = New System.Drawing.Point(11, 44)
-        Me.OptionCompareAll.Name = "optCompareAll"
-        Me.OptionCompareAll.Size = New System.Drawing.Size(117, 17)
+        Me.OptionCompareAll.Location = New System.Drawing.Point(15, 54)
+        Me.OptionCompareAll.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.OptionCompareAll.Name = "OptionCompareAll"
+        Me.OptionCompareAll.Size = New System.Drawing.Size(153, 21)
         Me.OptionCompareAll.TabIndex = 1
         Me.OptionCompareAll.Text = "Compare All Sheets"
         Me.OptionCompareAll.UseVisualStyleBackColor = True
         '
-        'optCompareSingleSheet
+        'OptionCompareSingleSheet
         '
         Me.OptionCompareSingleSheet.AutoSize = True
-        Me.OptionCompareSingleSheet.Location = New System.Drawing.Point(11, 21)
-        Me.OptionCompareSingleSheet.Name = "optCompareSingleSheet"
-        Me.OptionCompareSingleSheet.Size = New System.Drawing.Size(130, 17)
+        Me.OptionCompareSingleSheet.Location = New System.Drawing.Point(15, 26)
+        Me.OptionCompareSingleSheet.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.OptionCompareSingleSheet.Name = "OptionCompareSingleSheet"
+        Me.OptionCompareSingleSheet.Size = New System.Drawing.Size(170, 21)
         Me.OptionCompareSingleSheet.TabIndex = 0
         Me.OptionCompareSingleSheet.Text = "Compare Single Sheet"
         Me.OptionCompareSingleSheet.UseVisualStyleBackColor = True
         '
-        'cmdReset
+        'ButtonReset
         '
-        Me.ButtonReset.Location = New System.Drawing.Point(68, 386)
-        Me.ButtonReset.Name = "cmdReset"
-        Me.ButtonReset.Size = New System.Drawing.Size(95, 45)
+        Me.ButtonReset.Location = New System.Drawing.Point(91, 475)
+        Me.ButtonReset.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonReset.Name = "ButtonReset"
+        Me.ButtonReset.Size = New System.Drawing.Size(127, 55)
         Me.ButtonReset.TabIndex = 8
         Me.ButtonReset.Text = "Reset"
         Me.ButtonReset.UseVisualStyleBackColor = True
         '
-        'cmdExit
+        'ButtonExit
         '
-        Me.ButtonExit.Location = New System.Drawing.Point(272, 386)
-        Me.ButtonExit.Name = "cmdExit"
-        Me.ButtonExit.Size = New System.Drawing.Size(95, 45)
+        Me.ButtonExit.Location = New System.Drawing.Point(363, 475)
+        Me.ButtonExit.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonExit.Name = "ButtonExit"
+        Me.ButtonExit.Size = New System.Drawing.Size(127, 55)
         Me.ButtonExit.TabIndex = 9
         Me.ButtonExit.Text = "Exit"
         Me.ButtonExit.UseVisualStyleBackColor = True
         '
+        'Status
+        '
+        Me.Status.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.Status.Location = New System.Drawing.Point(0, 553)
+        Me.Status.Name = "Status"
+        Me.Status.Size = New System.Drawing.Size(581, 22)
+        Me.Status.TabIndex = 10
+        Me.Status.Text = "StatusStrip1"
+        '
         'WorkbookCompare
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(436, 467)
+        Me.ClientSize = New System.Drawing.Size(581, 575)
+        Me.Controls.Add(Me.Status)
         Me.Controls.Add(Me.ButtonExit)
         Me.Controls.Add(Me.ButtonReset)
         Me.Controls.Add(Me.grpCompareConfiguration)
@@ -179,6 +207,7 @@ Partial Class WorkbookCompare
         Me.Controls.Add(Me.ListBoxOriginalFileTabList)
         Me.Controls.Add(Me.ButtonNewFile)
         Me.Controls.Add(Me.ButtonOriginalFile)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "WorkbookCompare"
         Me.Text = "Workbook Compare"
         Me.grpKeyValue.ResumeLayout(False)
@@ -186,6 +215,7 @@ Partial Class WorkbookCompare
         Me.grpCompareConfiguration.ResumeLayout(False)
         Me.grpCompareConfiguration.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -202,4 +232,5 @@ Partial Class WorkbookCompare
     Friend WithEvents OptionCompareSingleSheet As RadioButton
     Friend WithEvents ButtonReset As Button
     Friend WithEvents ButtonExit As Button
+    Friend WithEvents Status As StatusStrip
 End Class

@@ -121,7 +121,7 @@ Public Class CompareWorkbooks
     ''' </summary>
     ''' <param name="statusPanel"></param>
     ''' <returns>If the comparison is successful, true is returned.  Otherwise, false is returned.</returns>
-    Public Function PerformComparison(statusPanel As StatusBar) As Boolean
+    Public Function PerformComparison(statusPanel As StatusStrip) As Boolean
         If CheckConfiguration() = True Then
             Dim myResultsCollection As New Collection
             Select Case CompareSingleSheet
@@ -200,10 +200,10 @@ Public Class CompareWorkbooks
     Private Function CompareSheet(originalSheet As Worksheet, newSheet As Worksheet, result As SheetComparisonResults) As Boolean
         'TODO:  Compare workwheet
         'Assume sheets are identical
-        result.Result = ResultType.SHEET_IDENTICAL
+        result.Result = SheetResultType.SHEET_IDENTICAL
         Try
             If originalSheet Is newSheet Then
-                result.Result = ResultType.SHEET_IDENTICAL
+                result.Result = SheetResultType.SHEET_IDENTICAL
                 Return True
             Else
                 'Perform a cell by cell comparison
@@ -217,7 +217,7 @@ Public Class CompareWorkbooks
                                 Dim myKeyValueRow As Double = ExcelHandler.ExcelApp.WorksheetFunction.Match(myKeyValue, newSheet.Range("A1:A" & newSheet.UsedRange.Rows.Count), 0)
                             Catch ex As Exception
                                 'Row was deleted in newSheet.  Save row in collection as deleted.
-                                result.Result = ResultType.SHEET_DIFFERENT
+                                result.Result = SheetResultType.SHEET_DIFFERENT
                                 'TODO:  Note that when retrieving this from the collection, the fact that it is an entire row from the original sheet means that the row was deleted
                                 result.CellList.Add(originalSheet.Range(originalSheet.Cells(myKeyValueCounter, 1), originalSheet.Cells(myKeyValueCounter, originalSheet.UsedRange.Columns.Count)), myKeyValue)
                             End Try
@@ -233,7 +233,7 @@ Public Class CompareWorkbooks
             End If
         Catch ex As Exception
             'The new sheet isn't in the original workbook.
-            result.Result = ResultType.SHEET_NEW
+            result.Result = SheetResultType.SHEET_NEW
             Debug.Print("Exception in CompareWorkbooks.CompareSheet.  " & ex.ToString)
             Return True
         End Try

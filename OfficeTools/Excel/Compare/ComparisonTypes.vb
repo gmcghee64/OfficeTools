@@ -1,8 +1,13 @@
 ﻿Public Class ComparisonTypes
 
-    Public Enum ResultType
+    Public Enum SheetResultType
         SHEET_IDENTICAL
         SHEET_DIFFERENT
         SHEET_NEW
+    End Enum
+
+    Public Enum CellResultType
+        CELL_ADDED
+        CELL_MODIFIED
     End Enum
 End Class

@@ -83,7 +83,11 @@
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub ButtonCompare_Click(sender As Object, e As EventArgs) Handles ButtonCompare.Click
-        'TODO:  Implement comparison
+        If myComparison.PerformComparison(Me.Status) = True Then
+            Me.Status.Text = "Comparison successfully completed"
+        Else
+            Me.Status.Text = "Comparison encountered an error"
+        End If
     End Sub
 
     ''' <summary>
@@ -154,10 +158,13 @@
     ''' <param name="e"></param>
     Private Sub ListBoxOriginalFileTabList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxOriginalFileTabList.SelectedIndexChanged
         Try
-            'TODO:  Add selected sheet to myConfiguration
+            With myComparison
+                .NewSheet = .NewWorkbook.Sheets(ListBoxNewFileTabList.SelectedIndex.ToString)
+            End With
         Catch ex As Exception
             Debug.Print(ex.ToString)
         End Try
+        ConfigureFormSelections()
     End Sub
 
     ''' <summary>
@@ -167,10 +174,13 @@
     ''' <param name="e"></param>
     Private Sub ListBoxNewFileTabList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxNewFileTabList.SelectedIndexChanged
         Try
-            'TODO:  Add selected sheet to myConfiguration
+            With myComparison
+                .OriginalSheet = .OriginalWorkbook.Sheets(ListBoxOriginalFileTabList.SelectedIndex.ToString)
+            End With
         Catch ex As Exception
             Debug.Print(ex.ToString)
         End Try
+        ConfigureFormSelections()
     End Sub
 
     ''' <summary>

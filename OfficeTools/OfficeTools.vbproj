@@ -78,6 +78,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excel\Compare\CellComparisonResults.vb" />
     <Compile Include="Excel\Compare\CompareWorkbooks.vb" />
     <Compile Include="Excel\Compare\ComparisonTypes.vb" />
     <Compile Include="Excel\Compare\SheetComparisonResults.vb" />

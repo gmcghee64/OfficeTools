@@ -1,6 +1,4 @@
-﻿Imports Microsoft.Office.Interop.Excel
-Imports OfficeTools
-Imports OfficeTools.ComparisonTypes
+﻿Imports OfficeTools.ComparisonTypes
 
 ''' <summary>
 ''' This class contains the results from comparing two worksheets.
@@ -8,7 +6,7 @@ Imports OfficeTools.ComparisonTypes
 Public Class SheetComparisonResults
     Private _SheetName As String
     Private _CellList As New Collection
-    Private _Result As ResultType
+    Private _Result As SheetResultType
 
     ''' <summary>
     ''' The SheetName property contains the name of the sheet that was evaluated.
@@ -24,7 +22,9 @@ Public Class SheetComparisonResults
     End Property
 
     ''' <summary>
-    ''' The CellList property contains the list of cells that are different.
+    ''' The CellList property contains the collection of cells that are different.  This collection is populated
+    ''' with CellComparisonResults objects.  This collection will be empty if the sheets are identical or if the
+    ''' sheet is new.
     ''' </summary>
     ''' <returns></returns>
     Public Property CellList As Collection
@@ -37,14 +37,14 @@ Public Class SheetComparisonResults
     End Property
 
     ''' <summary>
-    ''' This Result property contains the result of the comparison.
+    ''' The Result property contains the result of the sheet comparison.
     ''' </summary>
     ''' <returns></returns>
-    Public Property Result As ResultType
+    Public Property Result As SheetResultType
         Get
             Return _Result
         End Get
-        Set(value As ResultType)
+        Set(value As SheetResultType)
             _Result = value
         End Set
     End Property
