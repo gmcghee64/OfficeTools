@@ -217,15 +217,45 @@ Public Class CompareWorkbooks
                         For myKeyValueCounter = 1 To originalSheet.UsedRange.Rows.Count
                             Dim myKeyValue As String = originalSheet.Range("A" & myKeyValueCounter).Text
                             'Locate key value row in newSheet
+                            Dim myOriginalRow As Range = originalSheet.Range(originalSheet.Cells(myKeyValueCounter, 1),
+                                                                                originalSheet.Cells(myKeyValueCounter, originalSheet.UsedRange.Columns.Count))
                             Try
                                 Dim myKeyValueRow As Double = ExcelHandler.ExcelApp.WorksheetFunction.Match(myKeyValue, keyValueColumnNew, 0)
+                                'Row was found.  Compare the rows.
+                                Dim myNewRow As Range = newSheet.Range(newSheet.Cells(myKeyValueCounter, 1),
+                                                                       newSheet.Cells(myKeyValueCounter, newSheet.UsedRange.Columns.Count))
+                                If Not (myOriginalRow Is myNewRow) Then
+                                    'Rows are different.  Find the modified cells and add them to the collection.
+                                    result.Result = SheetResultType.SHEET_DIFFERENT
+                                    For myCellCounter = 2 To myOriginalRow.Columns.Count
+                                        Dim myOriginalCell As Range = originalSheet.Cells(myKeyValueCounter, myCellCounter)
+                                        Dim myNewCell As Range = newSheet.Cells(myKeyValueCounter, myCellCounter)
+                                        If Not (myOriginalCell Is myNewCell) Then
+                                            'Cells are different.  Add to collection.
+                                            Dim myCellComparisonResult As New CellComparisonResults
+                                            With myCellComparisonResult
+                                                .Result = CellResultType.CELL_MODIFIED
+                                                .Cell = myNewCell
+                                            End With
+                                            result.CellList.Add(myCellComparisonResult)
+                                        End If
+                                    Next
+                                    If myNewRow.Columns.Count > myOriginalRow.Columns.Count Then
+                                        For myCellCounter = myOriginalRow.ColumnsCount + 1 To myNewRow.columnsCount
+                                            'Add new cells to the collection
+                                            Dim myCellComparisonResult As New CellComparisonResults
+                                            Dim myNewCell As Range = newSheet.Cells(myKeyValueCounter, myCellCounter)
+                                            With myCellComparisonResult
+                                                .Result = CellResultType.CELL_ADDED
+                                                .Cell = myNewCell
+                                            End With
+                                        Next
+                                    End If
+                                End If
                             Catch ex As Exception
                                 'Row was deleted in newSheet.  Save row in collection as deleted.
                                 result.Result = SheetResultType.SHEET_DIFFERENT
-                                'Create a collection of the deleted cells
-                                Dim myDeletedRow As Range = originalSheet.Range(originalSheet.Cells(myKeyValueCounter, 1),
-                                                                                originalSheet.Cells(myKeyValueCounter, originalSheet.UsedRange.Columns.Count))
-                                For Each item In myDeletedRow
+                                For Each item In myOriginalRow
                                     Dim myCellComparisonResult As New CellComparisonResults
                                     With myCellComparisonResult
                                         .Result = CellResultType.CELL_DELETED
@@ -233,12 +263,12 @@ Public Class CompareWorkbooks
                                     End With
                                     result.CellList.Add(myCellComparisonResult)
                                 Next
-                                'TODO:  Note that when retrieving this from the collection, the fact that it is an entire row from the original sheet means that the row was deleted
                             End Try
                         Next
                         Return True
                     Case Else
                         'Perform row-by-row comparison
+                        'TODO:  Implement
                         Return True
                 End Select
             End If
