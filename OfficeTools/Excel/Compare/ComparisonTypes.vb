@@ -9,5 +9,6 @@
     Public Enum CellResultType
         CELL_ADDED
         CELL_MODIFIED
+        CELL_DELETED
     End Enum
 End Class

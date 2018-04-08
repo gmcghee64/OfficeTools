@@ -1,5 +1,4 @@
 ﻿Imports Microsoft.Office.Interop.Excel
-Imports OfficeTools
 Imports OfficeTools.ComparisonTypes
 
 ''' <summary>
@@ -58,7 +57,7 @@ Public Class CompareWorkbooks
 
     ''' <summary>
     ''' The KeyValueColumnA property indicates how to perform the comparison.  When set to true, 
-    ''' column A will be used as the key value.  Otherwise, the a row-by-row comparison will be
+    ''' column A will be used as the key value.  Otherwise, a row-by-row comparison will be
     ''' performed.
     ''' </summary>
     ''' <returns></returns>
@@ -116,12 +115,14 @@ Public Class CompareWorkbooks
 
     ''' <summary>
     ''' The PerformComparison operation either compares the OriginalSheet to the NewSheet or
-    ''' the OriginalWorkbook to the NewWorkbook.  The comparison results are saved in a new
+    ''' the OriginalWorkbook to the NewWorkbook.  The NewWorkbook is saved as a new
     ''' workbook having the same name as the NewWorkbook appended with a date/time stamp.
+    ''' A new sheet is included in the workbook with the comparison results.
     ''' </summary>
     ''' <param name="statusPanel"></param>
     ''' <returns>If the comparison is successful, true is returned.  Otherwise, false is returned.</returns>
     Public Function PerformComparison(statusPanel As StatusStrip) As Boolean
+        'TODO:  Implement statusPanel update processing.
         If CheckConfiguration() = True Then
             Dim myResultsCollection As New Collection
             Select Case CompareSingleSheet
@@ -129,7 +130,7 @@ Public Class CompareWorkbooks
                     Dim myResults As New SheetComparisonResults
                     If CompareSheet(OriginalSheet, NewSheet, myResults) = True Then
                         myResultsCollection.Add(myResults)
-                        'TODO:  Generate change report in new workbook and save it
+                        GenerateReport(myResultsCollection)
                         Return True
                     Else
                         'An error must have occurred.  Return false.
@@ -151,11 +152,11 @@ Public Class CompareWorkbooks
                             Debug.Print(ex.ToString)
                             'Sheet must not be in original workbook
                             myResults.SheetName = sheet.name
-                            'TODO:  Need to record result as new sheet.  How to modify enum property?
+                            myResults.Result = SheetResultType.SHEET_NEW
                             myResultsCollection.Add(myResults)
                         End Try
                     Next
-                    'TODO:  Generate change report in new workbook and save it
+                    GenerateReport(myResultsCollection)
                     Return True
                     Exit Select
                 Case Else
@@ -199,31 +200,41 @@ Public Class CompareWorkbooks
     ''' is returned, the detailed results will be in the result parameter.</returns>
     Private Function CompareSheet(originalSheet As Worksheet, newSheet As Worksheet, result As SheetComparisonResults) As Boolean
         'TODO:  Compare workwheet
-        'Assume sheets are identical
-        result.Result = SheetResultType.SHEET_IDENTICAL
+        result.Result = SheetResultType.SHEET_IDENTICAL ' Assume sheets are identical
         Try
+            result.SheetName = newSheet.Name
             If originalSheet Is newSheet Then
                 result.Result = SheetResultType.SHEET_IDENTICAL
                 Return True
             Else
-                'Perform a cell by cell comparison
+                'Sheets are different.  Find and record the different cells.
                 Select Case KeyValueColumnA
                     Case True
                         'Use column A as key value
+                        'Compare each row in original sheet
+                        Dim keyValueColumnOriginal As Range = originalSheet.Range("A1:A" & originalSheet.UsedRange.Rows.Count)
+                        Dim keyValueColumnNew As Range = newSheet.Range("A1:A" & newSheet.UsedRange.Rows.Count)
                         For myKeyValueCounter = 1 To originalSheet.UsedRange.Rows.Count
                             Dim myKeyValue As String = originalSheet.Range("A" & myKeyValueCounter).Text
                             'Locate key value row in newSheet
                             Try
-                                Dim myKeyValueRow As Double = ExcelHandler.ExcelApp.WorksheetFunction.Match(myKeyValue, newSheet.Range("A1:A" & newSheet.UsedRange.Rows.Count), 0)
+                                Dim myKeyValueRow As Double = ExcelHandler.ExcelApp.WorksheetFunction.Match(myKeyValue, keyValueColumnNew, 0)
                             Catch ex As Exception
                                 'Row was deleted in newSheet.  Save row in collection as deleted.
                                 result.Result = SheetResultType.SHEET_DIFFERENT
+                                'Create a collection of the deleted cells
+                                Dim myDeletedRow As Range = originalSheet.Range(originalSheet.Cells(myKeyValueCounter, 1),
+                                                                                originalSheet.Cells(myKeyValueCounter, originalSheet.UsedRange.Columns.Count))
+                                For Each item In myDeletedRow
+                                    Dim myCellComparisonResult As New CellComparisonResults
+                                    With myCellComparisonResult
+                                        .Result = CellResultType.CELL_DELETED
+                                        .Cell = item
+                                    End With
+                                    result.CellList.Add(myCellComparisonResult)
+                                Next
                                 'TODO:  Note that when retrieving this from the collection, the fact that it is an entire row from the original sheet means that the row was deleted
-                                result.CellList.Add(originalSheet.Range(originalSheet.Cells(myKeyValueCounter, 1), originalSheet.Cells(myKeyValueCounter, originalSheet.UsedRange.Columns.Count)), myKeyValue)
                             End Try
-                            For myColumnCounter = 1 To originalSheet.UsedRange.Columns.Count
-
-                            Next
                         Next
                         Return True
                     Case Else
@@ -238,4 +249,7 @@ Public Class CompareWorkbooks
             Return True
         End Try
     End Function
+    Private Sub GenerateReport(results As Collection)
+
+    End Sub
 End Class
